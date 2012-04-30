@@ -1,0 +1,17 @@
+WH2 Weather Sensor Library for Arduino
+Created by Luc Small on 30 April 2012.
+Released into the public domain.
+
+
+An Arduino library for receiving wireless data from the WH2 wireless 
+temperature and humidity sensor from Fine Offset Electronics.
+
+For more details on using this library, go to:
+
+http://lucsmall.com/2012/04/30/weather-station-hacking-part-3/
+
+
+This code contains a CRC-8 function adapted from the Arduino OneWire library:
+ http://www.pjrc.com/teensy/td_libs_OneWire.html
+Thanks go to the authors of that project.
+
