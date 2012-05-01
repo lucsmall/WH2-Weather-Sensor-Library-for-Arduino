@@ -15,7 +15,7 @@ class WeatherSensorWH2
     WeatherSensorWH2();
     void accept(byte interval);
     bool acquired();
-    byte sensor_id();
+    int get_sensor_id();
     byte* get_packet();
     byte calculate_crc();
     bool valid();

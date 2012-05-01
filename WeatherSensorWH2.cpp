@@ -108,9 +108,9 @@ byte* WeatherSensorWH2::get_packet()
   return _packet;
 }
 
-byte WeatherSensorWH2::sensor_id()
+int WeatherSensorWH2::get_sensor_id()
 {
-  return _packet[0];
+  return (_packet[0] << 8) + (_packet[1] >> 4);
 }
 
 byte WeatherSensorWH2::get_humidity()
@@ -155,11 +155,12 @@ uint8_t WeatherSensorWH2::_crc8( uint8_t *addr, uint8_t len)
 {
   uint8_t crc = 0;
 
+  // Indicated changes are from reference CRC-8 function in OneWire library
   while (len--) {
     uint8_t inbyte = *addr++;
     for (uint8_t i = 8; i; i--) {
       uint8_t mix = (crc ^ inbyte) & 0x80; // changed from & 0x01
-      crc <<= 1; // changes from right shift
+      crc <<= 1; // changed from right shift
       if (mix) crc ^= 0x31;// changed from 0x8C;
       inbyte <<= 1; // changed from right shift
     }

@@ -87,6 +87,7 @@ void loop() {
        
       packet = weather.get_packet();
       for(i=0;i<5;i++) {
+        Serial.print("0x");
         Serial.print(packet[i], HEX);
         Serial.print("/");
         Serial.print(packet[i], DEC);
@@ -95,7 +96,10 @@ void loop() {
       Serial.print("crc: ");
       Serial.print(weather.calculate_crc(), HEX);
       Serial.println((weather.valid() ? " OK" : " BAD"));
-      
+  
+      Serial.print("Sensor ID: 0x");
+      Serial.print(weather.get_sensor_id(), HEX);
+
       Serial.print("Humidity: ");
       Serial.print(weather.get_humidity(), DEC);
       Serial.println("%");
