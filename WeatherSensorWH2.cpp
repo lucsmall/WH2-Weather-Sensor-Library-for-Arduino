@@ -110,7 +110,7 @@ byte* WeatherSensorWH2::get_packet()
 
 int WeatherSensorWH2::get_sensor_id()
 {
-  return (_packet[0] << 8) + (_packet[1] >> 4);
+  return (_packet[0] << 4) + (_packet[1] >> 4);
 }
 
 byte WeatherSensorWH2::get_humidity()
@@ -139,11 +139,12 @@ String WeatherSensorWH2::get_temperature_formatted()
   temperature = ((_packet[1] & B00000111) << 8) + _packet[2];
   whole = temperature / 10;
   partial = temperature - (whole*10);
-  sign = ' ';
   if (_packet[1] & B00001000) {
-   sign = '-'; 
+   sign = '-';
+   s = String(sign); 
+  } else {
+    s = String();
   }
-  s = String(sign);
   s = s.concat(String(whole, DEC));
   s = s.concat(String('.'));
   s = s.concat(String(partial, DEC));

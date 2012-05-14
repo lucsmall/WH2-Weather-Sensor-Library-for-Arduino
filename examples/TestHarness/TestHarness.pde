@@ -98,7 +98,7 @@ void loop() {
       Serial.println((weather.valid() ? " OK" : " BAD"));
   
       Serial.print("Sensor ID: 0x");
-      Serial.print(weather.get_sensor_id(), HEX);
+      Serial.println(weather.get_sensor_id(), HEX);
 
       Serial.print("Humidity: ");
       Serial.print(weather.get_humidity(), DEC);
@@ -109,6 +109,7 @@ void loop() {
       Serial.print(" C  [");
       Serial.print(weather.get_temperature(), DEC);
       Serial.println("]");
+      Serial.println("--------------");
    }
    
    got_interval = 0; 
