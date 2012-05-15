@@ -8,7 +8,14 @@
   http://www.pjrc.com/teensy/td_libs_OneWire.html
   Thanks go to the authors of that project.
 */
+
+/* Added to provide compatibility with Arduino 1.0 and 0022 */
+#if defined(ARDUINO) && ARDUINO >= 100
+#include "Arduino.h"
+#else
 #include "WProgram.h"
+#endif
+
 #include "WeatherSensorWH2.h"
 
 WeatherSensorWH2::WeatherSensorWH2()
@@ -145,9 +152,12 @@ String WeatherSensorWH2::get_temperature_formatted()
   } else {
     s = String();
   }
-  s = s.concat(String(whole, DEC));
-  s = s.concat(String('.'));
-  s = s.concat(String(partial, DEC));
+  //s = s.concat(String(whole, DEC));
+  //s = s.concat(String('.'));
+  //s = s.concat(String(partial, DEC));
+  s += String(whole, DEC);
+  s += '.';
+  s += String(partial, DEC);
   return s;
 }
 

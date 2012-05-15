@@ -7,7 +7,12 @@
 #ifndef WeatherSensorWH2_h
 #define WeatherSensorWH2_h
 
+/* Added to provide compatibility with Arduino 1.0 and 0022 */
+#if defined(ARDUINO) && ARDUINO >= 100
+#include "Arduino.h"
+#else
 #include "WProgram.h"
+#endif
 
 class WeatherSensorWH2
 {
