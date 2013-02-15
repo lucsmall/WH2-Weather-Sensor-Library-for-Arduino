@@ -137,28 +137,26 @@ int WeatherSensorWH2::get_temperature()
   return temperature;
 }
 
+
 String WeatherSensorWH2::get_temperature_formatted()
 {
   int temperature;
-  byte whole, partial, sign;
+  byte whole, partial;
   String s;
-
-  temperature = ((_packet[1] & B00000111) << 8) + _packet[2];
-  whole = temperature / 10;
-  partial = temperature - (whole*10);
-  if (_packet[1] & B00001000) {
-   sign = '-';
-   s = String(sign); 
-  } else {
-    s = String();
-  }
-  //s = s.concat(String(whole, DEC));
-  //s = s.concat(String('.'));
-  //s = s.concat(String(partial, DEC));
-  s += String(whole, DEC);
-  s += '.';
-  s += String(partial, DEC);
-  return s;
+   
+   temperature = ((_packet[1] & B00000111) << 8) + _packet[2];
+   whole = temperature / 10;
+   partial = temperature - (whole*10);
+   // 20130215: Changed to fix bug formatting negative temperatures
+   // Bug reported and fix contributed by Sebastian Muszynski (basti@linkt.de).
+   s = String();
+   if (_packet[1] & B00001000) {
+     s += String('-');
+   }
+   s += String(whole, DEC);
+   s += '.';
+   s += String(partial, DEC);
+   return s;
 }
 
 
