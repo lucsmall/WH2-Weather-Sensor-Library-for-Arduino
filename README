@@ -1,3 +1,13 @@
+_STOP PRESS!_
+
+I now suggest using "Better WH2", an improved Arduino sketch for decoding packets from the WH2 outdoor temperature and humidity sensor from Fine Offset Electronics:
+
+https://github.com/lucsmall/BetterWH2
+
+Better WH2 incorporates timeouts and other changes that making decoding packets much more reliable. It has better immunity to noise and the code has been made less CPU intensive by reducing the frequency of timer interrupts by a factor of four. This frees up more time for your own code to run.
+
+----
+
 WH2 Weather Sensor Library for Arduino
 Created by Luc Small on 30 April 2012.
 Released into the public domain.
